@@ -1,0 +1,31 @@
+#python3 -m mqtt_io mqttconfig.yaml
+
+#greenhouse/output/light/set: ON
+
+mqtt:
+  host: 192.168.1.193
+  port: 1883
+  user: "mqtt"
+  password: "mqtt"
+  topic_prefix: greenhouse
+
+gpio_modules:
+  # Use the Raspberry Pi built-in GPIO
+  - name: rpi
+    module: raspberrypi
+
+digital_outputs:
+  # Pin is an output connected to a light
+  - name: light
+    module: rpi
+    pin: 22 #GPIO/BCM number
+  - name: pump
+    module: rpi
+    pin: 5 #GPIO/BCM number
+
+digital_inputs:
+  # GPIO 25 is an input connected to a doorbell button
+  - name: switch
+    module: rpi
+    pin: 25 #GPIO/BCM number
+    pullup: True
